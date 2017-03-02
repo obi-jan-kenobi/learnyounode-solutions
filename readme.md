@@ -1,1 +1,1 @@
-# learnyounode workshop solutions
+# nodeschool workshop solutions

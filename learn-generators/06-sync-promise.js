@@ -3,16 +3,22 @@
 const fs = require('fs')
 
 function askFoo() {
-  return new Promise.resolve('foo')    
+  return Promise.resolve('foo')    
 }
 
 function run (generator) {
-  const it = generator(go)
+  const it = generator()
 
-  function go (err, result) {
-    if (err) it.throw(err)
-    else it.next(result)
+  function go (result) {
+    if (result.done) return Promise.resolve(result.value)
+    return Promise.resolve(result.value)
+      .then(res => go(it.next(res)))
   }
 
-  go()
+  go(it.next())
 }
+
+run(function* () {
+  const foo = yield askFoo()
+  console.log(foo)
+})

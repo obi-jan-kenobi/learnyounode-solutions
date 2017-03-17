@@ -1,7 +1,5 @@
 'use strict'
 
-const fs = require('fs')
-
 function askFoo() {
   return Promise.resolve('foo')    
 }

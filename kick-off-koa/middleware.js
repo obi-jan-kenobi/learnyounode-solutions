@@ -10,7 +10,6 @@ const responseTime = () => async (ctx, next) => {
 
 const upperCaser = () => async (ctx, next) => {
   await next()
-  console.log(ctx)
   if (ctx.body) ctx.body = ctx.body.toUpperCase()
 }
 
